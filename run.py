@@ -10,6 +10,7 @@ def index():
 
 @app.route("/test")
 def test():
-    return 'This is a test!'
+    return 'This is a test'
 
-#can exit out of thing
+# when you close the terminal, it doesn't save the app you've run
+# python has a package that will automatically
