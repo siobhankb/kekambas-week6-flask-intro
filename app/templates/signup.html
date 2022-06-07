@@ -5,7 +5,23 @@
 
 {% block content %}
 <h4>Please Sign Up!</h4>
-  {{ form }}
-  {{ form.email }}
-  {{ form.password }}
+<form method = 'post' action="/">
+  {{ form.csrf_token }}
+  <div class="form-group">
+  {{ form.email.label }}
+  {{ form.email(class='form-control', placeholder='Enter Email') }}
+
+  {{ form.username.label }}
+  {{ form.username(class='form-control', placeholder='Enter Username') }}
+
+  {{ form.password.label }}
+  {{ form.password(class='form-control', placeholder='Enter p\Password') }}
+
+  {{ form.confirm_pass.label }}
+  {{ form.confirm_pass(class='form-control', placeholder='Enter p\Confirm Password') }}
+
+  {{ form.submit(class='btn btn-primary mt-3')}}
+  </div>
+</form>
+
 {% endblock content %}

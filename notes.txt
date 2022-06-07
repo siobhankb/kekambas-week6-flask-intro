@@ -42,3 +42,10 @@ need a 'secret key'
     </div>
   </body>
 </html>
+
+
+
+
+flashing messages:
+--> copied from  https://flask.palletsprojects.com/en/2.1.x/patterns/flashing/
+Brian used a bootstrap code block to format
