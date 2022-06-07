@@ -1,0 +1,2 @@
+forms - use pip install
+must use CSRF token for safety (automatically included)
