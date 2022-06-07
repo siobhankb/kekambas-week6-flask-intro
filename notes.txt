@@ -1,2 +1,44 @@
 forms - use pip install
 must use CSRF token for safety (automatically included)
+
+   -->$ pip install flask-wtf
+
+something weird happened to my requirements.txt file (287 lines of code?)
+watch video about 
+
+gonna have to go back to video about "refactoring"
+
+
+make 'forms.py' file
+copy code from Flask-WTF documentation:
+
+
+        from flask_wtf import FlaskForm
+        from wtforms import StringField
+        from wtforms.validators import DataRequired
+
+        class MyForm(FlaskForm):
+            name = StringField('name', validators=[DataRequired()])
+
+need a 'secret key'
+
+
+
+
+<!-- This is the basic BASE TEMPLATE code from jinja documentation -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block head %}
+    <link rel="stylesheet" href="style.css" />
+    <title>{% block title %}{% endblock %} - My Webpage</title>
+    {% endblock %}
+  </head>
+  <body>
+    <div id="content">{% block content %}{% endblock %}</div>
+    <div id="footer">
+      {% block footer %} &copy; Copyright 2008 by
+      <a href="http://domain.invalid/">you</a>. {% endblock %}
+    </div>
+  </body>
+</html>
