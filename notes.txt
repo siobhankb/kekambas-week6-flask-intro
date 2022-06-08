@@ -1,7 +1,7 @@
 forms - use pip install
 must use CSRF token for safety (automatically included)
 
-   -->$ pip install flask-wtf
+   --> $ pip install flask-wtf
 
 something weird happened to my requirements.txt file (287 lines of code?)
 watch video about 
@@ -72,3 +72,18 @@ instead of db.createall()
 use MIGRATE
 
 --> pip install flask-migrate
+
+add to __init__.py
+  from flask_migrate import migrate 
+  migrate = Migrate(app, db)
+
+**then in terminal:
+--> $ flask db init
+**creates 'migrations' folder
+add to __init__.py
+from . import models
+
+--> $ flask db migrate -m "Initial migration"
+
+add to .gitignore:
+  app.db

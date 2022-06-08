@@ -12,9 +12,11 @@ class User(db.Model):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.password = generate_password_hash(kwargs['password'])
-        
-    def __repr__(self):
-        return f"<User|self.username>"
+        db.session.add(self)
+        db.session.commit()
 
-    # def __repr__(self):
-    #     return '<User %r>' % self.username
+
+    def __repr__(self):
+        return f"<User|{self.username}>"
+
+    
