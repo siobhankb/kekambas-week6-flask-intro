@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, flash
+from flask import render_template, redirect, url_for, flash
 from app.forms import SignUpForm
 
 #tell what URL

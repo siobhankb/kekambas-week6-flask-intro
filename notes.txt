@@ -49,3 +49,26 @@ need a 'secret key'
 flashing messages:
 --> copied from  https://flask.palletsprojects.com/en/2.1.x/patterns/flashing/
 Brian used a bootstrap code block to format
+
+**to connect to database:
+--> pip install flask-sqlalchemy
+then do another pip freeze > requirements.txt<-- to update necessary packages
+
+
+from werkzeug.security import generate_password_hash, check_password_hash
+
+why we can't just do a def __init__(self) for class(User)
+from SQLAlchemy Quickstart-->
+      Note how we never defined a __init__ method on the User class? That’s because SQLAlchemy adds an implicit constructor to all model classes which accepts keyword arguments for all its columns and relationships. If you decide to override the constructor for any reason, make sure to keep accepting **kwargs and call the super constructor with those **kwargs to preserve this behavior:
+
+      class Foo(db.Model):
+          # ...
+          def __init__(self, **kwargs):
+              super(Foo, self).__init__(**kwargs)
+              # do custom stuff
+
+
+instead of db.createall()
+use MIGRATE
+
+--> pip install flask-migrate
