@@ -20,3 +20,12 @@ class User(db.Model):
         return f"<User|{self.username}>"
 
     
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(50), nullable=False)
+    body = db.Column(db.String(250), nullable=False)
+    date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id')) #references 'user' in table 
+
+    def __repr__(self):
+        return f"<Post|{self.title} /\ User|{self.user_id}>"

@@ -87,3 +87,12 @@ from . import models
 
 add to .gitignore:
   app.db
+
+
+  bc we set unique=True, we need to do a query & if-then to find out if a new user tried to make a username that already exists
+  *could use:
+    method sqlalchemy.orm.Query.exists()¶
+  *or session.query(MyClass).filter(MyClass.name == 'some name')
+
+  filter_by is like 'where' in SQL
+  filter is

@@ -24,13 +24,15 @@ def signup():
         username = form.username.data
         password = form.password.data
         print(email, username, password)
-        if username in {'abc', 'aaa'}:
-            flash('That username already exitsts')
-            return redirect(url_for('index'))
+        # Query user table to make sure info entered is unique
+        user_check = User.query.filter((User.email == email)|(User.username== username)).all()
+        if user_check:
+            flash('A user with that username or email already exitsts', 'danger')
+            return redirect(url_for('signup'))
 
         # add the user to the database
         new_user = User(email=email, username=username, password=password)
-
+        
         # show message of success/failure
         flash(f'{new_user.username} has successfully signed up!', 'success')
         #redirect back to the homepage
