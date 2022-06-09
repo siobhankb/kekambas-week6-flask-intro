@@ -116,3 +116,6 @@ add to .gitignore:
           enter into db
           flash success message
           redirect to home page (where new post will also display)
+
+
+spaced out at 2:40pm - check video about current_user proxy?

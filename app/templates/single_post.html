@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Kekambas Blog | {{ post.title }}{% endblock %}
+
+{% block content %}
+  {% if current_user.is_authenticated %}
+    <h6 class="card-subtitle text-muted">Welcome {{ current_user.username }} </h6>
+  {% else %}
+    <h6 class="card-subtitle text-muted">Please sign up for our blog!</h6>
+  {% endif %}
+
+  {% for post in posts %}
+    <div class="card">
+        <a href="{{ url_for('view_single_post', post_id=post_id) }} ">
+            <div class="card-header">{{ post.title }}</div>
+        </a>
+        <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">{{ post.author.username }} on <cite title=""Source Title>{{ post.date_created.strftime('%A, %B %d, %y') }}</cite> </h6>
+        <p class="card-text">{{ post.body }}</p>
+        </div>
+    </div>
+
+{% endblock %}
