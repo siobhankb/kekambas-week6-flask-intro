@@ -4,12 +4,14 @@
 
 {% block content %}
     <h1>Hello {{ user.username }}</h1>
-    <h4>My very favorite colors:</h4>
-    <ul>
-      {% for color in colors %} {% if color == 'blue' %}
-      <li>{{ color.upper() }}</li>
-      {% else %}
-      <li>{{ color }}</li>
-      {% endif %} {% endfor %}
-    </ul>
+      {% for post in posts %}
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ post.username }} on <cite title=""Source Title>{{ post.date_created.strftime('%A, %B %d, %y') }}</cite> </h6>
+            <p class="card-text">{{ post.body }}</p>
+          </div>
+        </div>
+      {% endfor %}
+
 {% endblock %}

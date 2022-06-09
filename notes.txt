@@ -96,3 +96,15 @@ add to .gitignore:
 
   filter_by is like 'where' in SQL
   filter is
+
+  ***Day 4 video reference to breakdown @--.route()
+  Figure out the structure & linkages to @_.ROUTE():
+    >ONE ROUTE for ONE PAGE = each route determines the way a page is set up
+    >routes reference other .py docs like forms, models 
+    >parameter in the .route() = URL extension for page address!!!
+    >function name & parameters ??
+    >render_template(<name_of_page.html>)
+
+
+    1. make a new form (class/object) for PostForm (to set up page layout/format)
+    2. send PostForm to routes

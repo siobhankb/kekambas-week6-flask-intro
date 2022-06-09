@@ -13,3 +13,7 @@ class SignUpForm(FlaskForm):
     confirm_pass = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField()
 
+class PostForm(FlaskForm):
+    title = StringField('Title', validators = [DataRequired()])
+    body = StringField('Body', validators=[DataRequired()])
+    # no author needed here bc we set up foreign key in db to reference the User who made the post

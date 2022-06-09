@@ -8,6 +8,7 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(256), nullable = False)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    posts = db.relationship('Post', backref='author') # <-- this is how to set up a foreign key!!
     
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -26,6 +27,11 @@ class Post(db.Model):
     body = db.Column(db.String(250), nullable=False)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) #references 'user' in table 
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        db.session.add(self)
+        db.session.commit()
 
     def __repr__(self):
         return f"<Post|{self.title} /\ User|{self.user_id}>"
