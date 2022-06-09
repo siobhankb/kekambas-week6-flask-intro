@@ -36,12 +36,20 @@ def signup():
     return render_template('signup.html', form=form)
 
 
-@app.route('/create_post')
+@app.route('/create_post',  methods=['GET', 'POST'])
 def create_post():
     form = PostForm()
-    
+    if form.validate_on_submit():
+        post_title = form.title.data
+        post_body = form.body.data
+
+        new_post=Post(title=post_title, body=post_body, user_id=1)
+        flash(f'{new_post.title} successfully created!', 'success')
+        return redirect(url_for('index'))
 
     return render_template('create_post.html', form=form)
+
+
 
 # when you close the terminal, it doesn't save the app you've run
 # python has a package that will automatically

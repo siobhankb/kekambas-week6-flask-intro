@@ -106,5 +106,11 @@ add to .gitignore:
     >render_template(<name_of_page.html>)
 
 
+
     1. make a new form (class/object) for PostForm (to set up page layout/format)
     2. send PostForm to routes
+    3. format .html file 
+    4. make function in route methods = get & post
+    5. add to route:
+        if it's valid,
+          enter into db
