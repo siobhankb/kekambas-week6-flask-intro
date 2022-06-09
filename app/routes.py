@@ -1,6 +1,6 @@
 from app import app
 from flask import render_template, redirect, url_for, flash
-from app.forms import SignUpForm, PostForm
+from app.forms import SignUpForm, PostForm, LoginForm
 from app.models import User, Post
 
 #tell what URL
@@ -49,6 +49,13 @@ def create_post():
 
     return render_template('create_post.html', form=form)
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        #find out if there is actually a user with that username & pw
+        print('hooray')
+    return render_template('login.html', form=form)
 
 
 # when you close the terminal, it doesn't save the app you've run

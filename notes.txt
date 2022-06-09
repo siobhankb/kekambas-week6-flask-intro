@@ -107,10 +107,12 @@ add to .gitignore:
 
 
 
-    1. make a new form (class/object) for PostForm (to set up page layout/format)
+    1. make a new form (class/object) for PostForm (to set up page layout/format) -- don't for get SUBMIT field if collecting info
     2. send PostForm to routes
     3. format .html file 
     4. make function in route methods = get & post
     5. add to route:
         if it's valid,
           enter into db
+          flash success message
+          redirect to home page (where new post will also display)

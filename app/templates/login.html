@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Kekambas Blog | Create a Post {% endblock %}
+
+{% block content %}
+<h4>Log In:</h4>
+<form method = 'post'>
+  {{ form.csrf_token }}
+  <div class="form-group">
+  {{ form.username.label }}
+  {{ form.username(class='form-control', placeholder='Enter Username') }}
+
+  {{ form.password.label }}
+  {{ form.password(class='form-control', placeholder='Enter Password') }}
+
+  {{ form.submit(class='btn btn-primary mt-3')}}
+  </div>
+
+{% endblock %}
