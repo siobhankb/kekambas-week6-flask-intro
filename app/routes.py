@@ -1,16 +1,17 @@
 from app import app
 from flask import render_template, redirect, url_for, flash
-from flask_login import login_user, login_required, logout_user
+from flask_login import login_user, login_required, logout_user, current_user
 from app.forms import SignUpForm, PostForm, LoginForm
 from app.models import User, Post
 
 
-#tell what URL
-@app.route('/index')
+# tell what URL
+@app.route('/')
 def index():
-    users=User.query.all()
-    posts=Post.query.all()
+    users = User.query.all()
+    posts = Post.query.all()
     return render_template('index.html', users=users, posts=posts)
+
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -22,17 +23,18 @@ def signup():
         password = form.password.data
         print(email, username, password)
         # Query user table to make sure info entered is unique
-        user_check = User.query.filter((User.email == email)|(User.username== username)).all()
+        user_check = User.query.filter(
+            (User.email == email) | (User.username == username)).all()
         if user_check:
             flash('A user with that username or email already exitsts', 'danger')
             return redirect(url_for('signup'))
 
         # add the user to the database
         new_user = User(email=email, username=username, password=password)
-        
+
         # show message of success/failure
         flash(f'{new_user.username} has successfully signed up!', 'success')
-        #redirect back to the homepage
+        # redirect back to the homepage
         return redirect(url_for('index'))
 
     return render_template('signup.html', form=form)
@@ -47,17 +49,18 @@ def create_post():
         post_body = form.body.data
         user_id = current_user.id
 
-        new_post=Post(title=post_title, body=post_body, user_id=user_id)
+        new_post = Post(title=post_title, body=post_body, user_id=user_id)
         flash(f'{new_post.title} successfully created!', 'success')
         return redirect(url_for('index'))
 
     return render_template('create_post.html', form=form)
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        #find out if there is actually a user with that username & pw
+        # find out if there is actually a user with that username & pw
         username = form.username.data
         password = form.password.data
 
@@ -70,8 +73,9 @@ def login():
 
         flash('Incorrect username and/or password. Please try again.', 'danger')
         return redirect(url_for('login'))
-    
+
     return render_template('login.html', form=form)
+
 
 @app.route('/logout')
 def logout():
@@ -79,10 +83,12 @@ def logout():
     flash('You have logged out', 'secondary')
     return redirect(url_for('index'))
 
+
 @app.route('/posts/<post_id>')
 def view_single_post(post_id):
     post = Post.query.get_or_404(post_id)
     return render_template('single_post.html', post=post)
+
 
 @app.route('/edit-posts/<post_id>')
 def edit_single_post(post_id):
@@ -95,5 +101,5 @@ def edit_single_post(post_id):
 # when you close the terminal, it doesn't save the app you've run
 # python has a package that will automatically
 
-#can use jinja2, a package, to format 
+# can use jinja2, a package, to format
 # render_template('some_template_name', )

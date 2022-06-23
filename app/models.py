@@ -36,11 +36,29 @@ class Post(db.Model):
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) #references 'user' in table 
 
-
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         db.session.add(self)
         db.session.commit()
 
     def __repr__(self):
-        return f"<Post|{self.title} /\ User|{self.user_id}>"
+        return f"<Post|{self.title}>"
+
+    def update(self, **kwargs):
+        for key, value in kwargs.items():
+            if key in {'title', 'body'}:
+                setattr(self, key, value)
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'body': self.body,
+            'date_created': self.date_created,
+            'user_id': self.user_id
+        }

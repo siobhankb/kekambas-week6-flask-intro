@@ -119,3 +119,10 @@ add to .gitignore:
 
 
 spaced out at 2:40pm - check video about current_user proxy?
+
+
+Week8: went to React, now back to Flask
+goal: create API, set up JSON
+
+****Download postman
+postman.com
