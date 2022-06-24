@@ -28,6 +28,15 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)   
 
+    def to_dict(self):
+        data = {
+            'id': self.id,
+            'email': self.email,
+            'username': self.username,
+            'joined': self.date_created,
+            'post_count': len(self.posts)
+        }
+        return data
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
