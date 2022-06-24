@@ -22,6 +22,9 @@ def new_user():
     email = data.get('email')
     username = data.get('username')
     password = data.get('password')
+    user_check = User.query.filter((User.email == email) | (User.username == username))
+    if user_check:
+        return jsonify({"error": 'A user with that username or email already exists. Please try a different name.',}), 400
     # add new user to database with request info
     new_user = User(email=email, username=username, password=password)
     return jsonify(new_user.to_dict()), 201
